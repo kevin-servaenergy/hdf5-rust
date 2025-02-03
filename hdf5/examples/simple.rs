@@ -33,7 +33,7 @@ fn write_hdf5() -> Result<()> {
     blosc_set_nthreads(2); // set number of blosc threads
     let builder = group.new_dataset_builder();
     #[cfg(feature = "blosc")]
-    let builder = builder.blosc_zstd(9, true); // zstd + shuffle
+    let builder = builder.blosc_blosclz(9, true); // blosclz + shuffle
     let ds = builder
         .with_data(&arr2(&[
             // write a 2-D array of data
